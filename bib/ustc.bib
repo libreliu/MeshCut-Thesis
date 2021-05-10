@@ -1,3 +1,46 @@
+@article{Gu2002,
+abstract = {Surface geometry is often modeled with irregular triangle meshes. The process of remeshing refers to approximating such geometry using a mesh with (semi)-regular connectivity, which has advantages for many graphics applications. However, current techniques for remeshing arbitrary surfaces create only semi-regular meshes. The original mesh is typically decomposed into a set of disk-like charts, onto which the geometry is parametrized and sampled. In this paper, we propose to remesh an arbitrary surface onto a completely regular structure we call a geometry image. It captures geometry as a simple 2D array of quantized points. Surface signals like normals and colors are stored in similar 2D arrays using the same implicit surface parametrization - - texture coordinates are absent. To create a geometry image, we cut an arbitrary mesh along a network of edge paths, and parametrize the resulting single chart onto a square. Geometry images can be encoded using traditional image compression algorithms, such as wavelet-based coders. Copyright {\textcopyright} 2002 by the Association for Computing Machinery, Inc.},
+author = {Gu, Xianfeng and Gortler, Steven J. and Hoppe, Hugues},
+doi = {10.1145/566570.566589},
+file = {::},
+isbn = {1581135211},
+journal = {Proceedings of the 29th Annual Conference on Computer Graphics and Interactive Techniques, SIGGRAPH '02},
+keywords = {remeshing,surface parametrization},
+number = {Figure 1},
+pages = {355--361},
+title = {{Geometry images}},
+year = {2002}
+}
+
+@inproceedings{Erickson2002,
+abstract = {We consider the problem of cutting a set of edges on a poly-hedral manifold surface, possibly with boundary, to obtain a single topological disk, minimizing either the total number of cut edges or their total length. We show that this problem is NP-hard, even for manifolds without boundary and for punctured spheres. We also describe an algorithm with running time nO(g+k), where n is the combinatorial complexity, g is the genus, and k is the number of boundary components of the input surface. Finally, we describe a greedy algorithm that outputs a O(log2 g)-approximation of the minimum cut graph in O(g2n log n) time.},
+author = {Erickson, Jeff and Har-Peled, Sariel},
+booktitle = {Proceedings of the Annual Symposium on Computational Geometry},
+doi = {10.1145/513400.513430},
+file = {:home/libreliu/Downloads/schema.pdf:pdf},
+issn = {1432-0444},
+keywords = {Approximation,Computational topology,Cut graph,NP-hardness,Polygonal schema,Polyhedral 2-manifold},
+pages = {244--253},
+title = {{Optimally cutting a surface into a disk}},
+year = {2002}
+}
+
+@article{Dey1995,
+abstract = {We provide a new technique for deriving optimal-sized polygonal schema for triangulated compact 2-manifolds without boundary in O(n) time, where n is the size of the given triangulation T. We first derive a polygonal schema P embedded in T using Seifert-Van Kampen's theorem. A reduced polygonal schema Q of optimal size is computed from P, where a surjective map from the vertices of P is retained to the vertices of Q. This helps detecting null-homotopic (contractible to a point) cycles. Given a cycle of length k, we determine if it is null-homotopic in O(n+k log g) time and in $\theta$(n+k) space, where g is the genus of the given 2-manifold. The actual contraction for a null-homotopic cycle can be computed in $\theta$(nk) time and space. This is a considerable improvement over the previous best-known algorithm for this problem. {\textcopyright} 1995 Springer-Verlag New York Inc.},
+author = {Dey, T. K. and Schipper, H.},
+doi = {10.1007/BF02570697},
+file = {:home/libreliu/Downloads/177424.178001.pdf:pdf},
+issn = {01795376},
+journal = {Discrete \& Computational Geometry},
+number = {1},
+pages = {93--110},
+title = {{A new technique to compute polygonal schema for 2-manifolds with application to null-homotopy detection}},
+volume = {14},
+year = {1995}
+}
+
+@INPROCEEDINGS{oncomputinghantun,  author={Dey, Tamal K. and Li, Kuiyu and Sun, Jian},  booktitle={2007 International Conference on Cyberworlds (CW'07)},   title={On Computing Handle and Tunnel Loops},   year={2007},  volume={},  number={},  pages={357-366},  abstract={Many applications seek to identify features like 'handles' and 'tunnels' in a shape bordered by a surface embedded in three dimensions. To this end we define handle and tunnel loops on surfaces which can help identifying these features. We show that a closed surface of genus g always has g handle and g tunnel loops induced by the embedding. For a class of shapes that retract to graphs, we characterize these loops by a linking condition with these graphs. These characterizations lead to algorithms for detection and generation of these loops. We provide an implementation with applications to feature detection and topology simplification to show the effectiveness of the method.},  keywords={},  doi={10.1109/CW.2007.12},  ISSN={},  month={Oct},}
+
 @article{knuth84,
   author    = {Donald E. Knuth},
   title     = {Literate Programming},

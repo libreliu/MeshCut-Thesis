@@ -1,39 +1,55 @@
 % !TeX root = ../main.tex
 
-\chapter{简介}
+\chapter{绪论}
 
-\section{一级节标题}
+\section{网格切割}
 
-\subsection{二级节标题}
+三维网格的许多几何处理过程，如参数化和纹理映射，都依赖网格的拓扑信息。在某些场景下，我们希望能将带有复杂拓扑的网格，在保持几何信息近似不变的情形下变为圆盘拓扑。
 
-\subsubsection{三级节标题}
+以纹理映射问题为例，我们希望获得一个网格曲面到 $ [0, 1] \times [0, 1] $ 的双射，而此映射存在的必要条件是两个拓扑空间同胚。这时，唯一的方法就是将该网格曲面切割，使结果拓扑同胚于圆盘。
 
-\paragraph{四级节标题}
+对于不同的几何处理过程，对三维网格的要求各不相同，切割时应加以考虑。对于纹理映射来说，一个常见的要求是寻找使参数化后三角形形变最小的切割方案\cite{Gu2002}。另一个常见的要求是令割线尽可能短，这在提高纹理映射后图集生成的空间利用率上很有帮助\cite{atlasgen}。
 
-\subparagraph{五级节标题}
+\section{相关工作}
 
-本模板 \pkg{ustcthesis} 是中国科学技术大学本科生和研究生学位论文的 \LaTeX{}
-模板， 按照《\href{http://gradschool.ustc.edu.cn/static/oldsite/ylb/material/xw/wdxz/32.pdf}
-{中国科学技术大学研究生学位论文撰写手册}》（以下简称《撰写手册》）和
-《\href{https://www.teach.ustc.edu.cn/notice/notice-teaching/11530.html}
-{关于本科毕业论文（设计）格式和统一封面的通知}》的要求编写。
+由于网格切割在计算机图形学中的重要地位，切割和割线优化问题被研究者们广泛研究。寻找合法的割线是快速的，\citet{Dey1995} 说明只需要对对偶图进行广度优先搜索，就可以在 $ O(n) $ 的时间复杂度下得到将网格切割为圆盘拓扑的割线。
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua.
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-aliquip ex ea commodo consequat.
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-fugiat nulla pariatur.
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-deserunt mollit anim id est laborum.
+但是，优化割线长度是比较困难的。\citet{Erickson2002} 证明了，对于二维流形网格来说，计算其总长度或总段数意义下的最短割线是 NP-Hard 问题，并且提出了 $ O(g^2 n \log n) $ 时间复杂度的最小切割图近似算法。
+
+\section{本文内容}
+
+本论文将介绍网格切割的基本方法，以及优化切割方案以实现较短割线的几种算法，最后进行比较。
+
+% \subsection{二级节标题}
+
+% \subsubsection{三级节标题}
+
+% \paragraph{四级节标题}
+
+% \subparagraph{五级节标题}
+
+% 本模板 \pkg{ustcthesis} 是中国科学技术大学本科生和研究生学位论文的 \LaTeX{}
+% 模板， 按照《\href{http://gradschool.ustc.edu.cn/static/oldsite/ylb/material/xw/wdxz/32.pdf}
+% {中国科学技术大学研究生学位论文撰写手册}》（以下简称《撰写手册》）和
+% 《\href{https://www.teach.ustc.edu.cn/notice/notice-teaching/11530.html}
+% {关于本科毕业论文（设计）格式和统一封面的通知}》的要求编写。
+
+% Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+% incididunt ut labore et dolore magna aliqua.
+% Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+% aliquip ex ea commodo consequat.
+% Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+% fugiat nulla pariatur.
+% Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+% deserunt mollit anim id est laborum.
 
 
 
-\section{脚注}
+% \section{脚注}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua.
-\footnote{Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-  nisi ut aliquip ex ea commodo consequat.
-  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-  eu fugiat nulla pariatur.}
+% Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+% incididunt ut labore et dolore magna aliqua.
+% \footnote{Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+%   nisi ut aliquip ex ea commodo consequat.
+%   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+%   eu fugiat nulla pariatur.}

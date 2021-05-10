@@ -1,0 +1,40 @@
+% !TeX root = ../main.tex
+
+\chapter{网格切割的基本方法}
+
+\section{基本概念}
+
+本文研究的网格是指由三角面片组成的（紧）流形网格。对于流形网格，任意一个边相邻的三角面片的数目不超过两个。
+
+网格的割线是指一个边集合，将此边集合中的边去除\footnote{去除两个三角面片的公共边，即将两个三角面片“分开”。}后，剩余的网格构成圆盘拓扑。
+
+\section{如何沿割线展开曲面}
+
+
+
+\section{洪泛算法}
+
+\citet{Gu2002} 中提出的网格切割方法基于这样一个简单的事实：三角面片本身是圆盘拓扑。考虑这样的拓扑空间，其由一些三角面片组成，边界为三角面片外的边。
+
+\begin{algorithm}[h]
+    \SetAlgoLined
+    \KwData{this text}
+    \KwResult{how to write algorithm with \LaTeX2e }
+  
+    移除种子三角形.
+    \While{有只和一个三角形 $ t $ 相邻的边 $ e $} {
+      read current\;
+      \eIf{understand}{
+        go to next section\;
+        current section becomes this one\;
+      }{
+        go back to the beginning of current section\;
+      }
+    }
+    \caption{算法示例1}
+\end{algorithm}
+  
+
+\section{单纯同调理论}
+
+\citet{oncomputinghantun} 基于几何直观，发现二维流形网格的“把手”和“洞”等特征对于拓扑简化和特征检测都很有帮助。下面的篇幅对其用到的代数几何内容做一个简要介绍。
