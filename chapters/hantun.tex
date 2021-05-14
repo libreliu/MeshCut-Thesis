@@ -21,3 +21,49 @@ $ R_n $ 中处于一般位置的 $ n + 1 $ 个点 $ \{a_0, \dots, a_n\} $ ($n > 
 
 可以看出，单复形可以表示欧氏空间的一个子集，如果有这样的子集 $ X $ 可以被单复形中的所有单形的并表示，则成这样的 $ X $ 为多面体。显然，我们研究的网格就是这样的多面体。
 
+为了构造同调群，我们还需要引入定向单形的概念。定向单形为取定了定向的单形，此时单形分为相同和相反的两种定向，这两种定向在稍后定义的链群中互为逆元。形式上的说，即考虑 m-单形 $ (p_0, p_1, \dots, p_m) $，则 
+$$ p_{i_0} p_{i_1} \dots p_{i_m} = sgn(P) p_{0} p_{1} \dots p_{m} $$
+其中 $ P $ 为 $ \{0, 1, 2, \dots, m \} $ 到 $ \{i_0, i_1, i_2, \dots, i_m \} $ 的一个排列，$ sgn(P) $ 为此排列的符号。
+
+$ K $ 中所有 m-单形所对应的 m-定向单形所生成的在 $ \mathbb{Z} $ 系数域上的自由阿贝尔群称为 m-链群，记作 $ C_m(K) $。$ C_m(K) $ 的元素成为 m-链。为了叙述上的方便，定义 $ m < 0 $ 或者 $ m > \dim K $ 时 $ C_m(K) = 0 $。
+
+定义边缘算子 $ \partial_q: T_q(K) \to C_{q-1}(K) $ 满足 
+$$ \partial_q (a_0 a_1 \dots a_q) = \sum_{i=0}^{q} (-1)^i a_0 \dots \hat{a_i} \dots a_q $$
+
+其中  $ \hat{a_i} $ 表示删除 $ a_i $，$ T_q(K) $ 为 $ K $ 的所有 q-定向单形的集合。可以看出，边缘算子描述了一个单形组合和其对应的“边界”的关系。同时可以证明，$ \partial q $ 在满足 $\partial_q(-s) = -\partial_q(s) $ 的情形下可以唯一的扩张为 $ C_q(K) \to C_{q-1}(K) $ 的同态。为了方便，此同态仍然记作 $ \partial_q $，则有
+$$
+\partial_q (\sum_i n_i s_i) = \sum_i n_i \partial_q (s_i)
+$$
+成立。
+
+在考虑边缘同态的过程中，我们可以自然的得到 $ C_q(K) $ 的两个子群 $ Z_q(K) = ker(\partial_q(K)) $ 和 $ B_q(K) = Im(\partial_{q+1}(K)) $，分别成为 n-闭链群和 n-边缘链群。$ Z_q(K) $ 中的元素称为 n-闭链。显然，$ Z_q(K) $ 和 $ B_q(K) $ 都是自由阿贝尔群。同时可以证明，$ B_q(K) $ 是 $ Z_q(K) $ 的子群，这可以由下面的事实得到（$ c \in C_q(K) $）：
+\begin{align*}
+\partial_{q-1} (\partial_q (c)) &= \partial_{q-1} (\sum_{i=0}^q (-1)^i a_0 a_1 \dots \hat{a_i} \dots a_q) \\
+&= \sum_{i=1}^q (-1)^i \partial_{q-1} (a_0 a_1 \dots \hat{a_i} \dots a_q) \\
+&= \sum_{i=1}^q (-1)^i ( \sum_{j=1}^{i-1} (-1)^j a_0 \dots \hat{a_j} \dots \hat{a_i} \dots a_q + \sum_{j=i+1}^{q} (-1)^{j-1} a_0 \dots \hat{a_i} \dots \hat{a_j} \dots a_q ) \\
+&= \sum_{0 \le j < i \le q} (-1)^{i+j} a_0 \dots \hat{a_j} \dots \hat{a_i} \dots a_q - \sum_{0 \le i < j \le q} (-1)^{i+j} a_0 \dots \hat{a_i} \dots \hat{a_j} \dots a_q \\
+&= 0
+\end{align*}
+
+既然 $ B_q(K) $ 是 $ Z_q(K) $ 的子群，又因为 $ B_q(K) $ 是阿贝尔群，所以 $ B_q(K) $ 是正规子群。于是，我们定义 $ H_q(K) = Z_q(K) / B_q(K) $，即 $ Z_q(K) $ 对 $ B_q(K) $ 的商群。如果 $ K $ 中两个闭链 $ c $，$ c' $属于同一个 $ H_q(K) $ 确定的等价类，则称这两个闭链同调，记为 $ c \sim c' $。
+
+由于 $ Z_q(K) $ 和 $ B_q(K) $ 在 $ K $ 为有限集时均为有限生成自由阿贝尔群，则他们的商群也是有限生成阿贝尔群。由有限生成阿贝尔群的分类定理，可以将群分为自由子群和扭子群的直和：
+$$
+H_q(K) \simeq \underbrace{Z \oplus Z \oplus \dots \oplus Z}_{b_q(K)} \oplus Z_{i_1} \oplus \dots \oplus Z_{i_m}
+$$
+
+其中 $ b_q(K) $ 被称为 $ K $ 的 $ q $ 维 Betti 数。
+
+我们在前面的推导过程中对链群使用的系数域为 $ \mathbb Z $。如果我们将 $ \mathbb{Z} $ 换为 $ \mathbb{Z}_2 $ 或 $ \mathbb{R} $，由于 $ \mathbb{Z}_2 $ 和 $ \mathbb{R} $ 均没有非平凡的扭子群，那么 $ H_q(K; Z_2) $ 或 $ H_q(K; R) $ 的结构就很容易得到：
+$$
+H_q(K;\mathbb{R}) \simeq H_q(K;\mathbb{Z}_2) \simeq\underbrace{Z \oplus Z \oplus \dots \oplus Z}_{b_q(K)}
+$$
+
+所以 $ b_q(K) $ 又可以写作 $ \dim H_q(K; \mathbb{R}) $ 。由此，我们也可以得到在 $ \mathbb{Z}_2 $ 下 $ C_q(K) $，$ Z_q(K) $，$ B_q(K) $ 和 $ H_q(K) $ 均为线性空间，有维度和基的概念。
+
+\section{计算最短同调圈}
+
+\citet{Busaryev2012} 提出了利用标注 (annotation) 在 $ O(n^\omega + n^2 g^{\omega - 1}) $ 时间复杂度下计算 $ H_1(K; \mathbb{Z}_2) $ 的最优基的算法。
+
+所谓最优基，就是对任意 $ c = \sum_i c_i s_i \in Z_1(K) $，定义 $ w(c) = \sum_i c_i w(s_i) $ 为闭链 $ c $ 的权，并且求一组 $ H_1(K; \mathbb{Z}_2) $ 的基使得 $ \sum_{c} w(c) $ 最小。
+
