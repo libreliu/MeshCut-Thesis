@@ -8,7 +8,7 @@
 
 \section{单纯同调论}
 
-单纯同调论 (Simplicial homology) 是描述欧氏空间中具有组合结构的空间的同调论，又被成为组合拓扑学。
+单纯同调论 (Simplicial homology) 是描述欧氏空间中具有组合结构的空间的同调论，又被称为组合拓扑学。
 
 $ R_n $ 中处于一般位置的 $ n + 1 $ 个点 $ \{a_0, \dots, a_n\} $ ($n > 0$)的凸组合被称为一个 $ n $ 维单纯形，简称 n-单形，记作 $ (a_0, a_1, \dots, a_n) $。称 $ a_i$ 为其顶点。
 
@@ -25,7 +25,7 @@ $ R_n $ 中处于一般位置的 $ n + 1 $ 个点 $ \{a_0, \dots, a_n\} $ ($n > 
 $$ p_{i_0} p_{i_1} \dots p_{i_m} = sgn(P) p_{0} p_{1} \dots p_{m} $$
 其中 $ P $ 为 $ \{0, 1, 2, \dots, m \} $ 到 $ \{i_0, i_1, i_2, \dots, i_m \} $ 的一个排列，$ sgn(P) $ 为此排列的符号。
 
-$ K $ 中所有 m-单形所对应的 m-定向单形所生成的在 $ \mathbb{Z} $ 系数域上的自由阿贝尔群称为 m-链群，记作 $ C_m(K) $。$ C_m(K) $ 的元素成为 m-链。为了叙述上的方便，定义 $ m < 0 $ 或者 $ m > \dim K $ 时 $ C_m(K) = 0 $。
+$ K $ 中所有 m-单形所对应的 m-定向单形所生成的在 $ \mathbb{Z} $ 系数域上的自由阿贝尔群称为 m-链群，记作 $ C_m(K) $。$ C_m(K) $ 的元素称为 m-链。为了叙述上的方便，定义 $ m < 0 $ 或者 $ m > \dim K $ 时 $ C_m(K) = 0 $。
 
 定义边缘算子 $ \partial_q: T_q(K) \to C_{q-1}(K) $ 满足 
 $$ \partial_q (a_0 a_1 \dots a_q) = \sum_{i=0}^{q} (-1)^i a_0 \dots \hat{a_i} \dots a_q $$
@@ -36,7 +36,7 @@ $$
 $$
 成立。
 
-在考虑边缘同态的过程中，我们可以自然的得到 $ C_q(K) $ 的两个子群 $ Z_q(K) = ker(\partial_q(K)) $ 和 $ B_q(K) = Im(\partial_{q+1}(K)) $，分别成为 n-闭链群和 n-边缘链群。$ Z_q(K) $ 中的元素称为 n-闭链。显然，$ Z_q(K) $ 和 $ B_q(K) $ 都是自由阿贝尔群。同时可以证明，$ B_q(K) $ 是 $ Z_q(K) $ 的子群，这可以由下面的事实得到（$ c \in C_q(K) $）：
+在考虑边缘同态的过程中，我们可以自然的得到 $ C_q(K) $ 的两个子群 $ Z_q(K) = ker(\partial_q(K)) $ 和 $ B_q(K) = Im(\partial_{q+1}(K)) $，分别称为 n-闭链群和 n-边缘链群。$ Z_q(K) $ 中的元素称为 n-闭链。显然，$ Z_q(K) $ 和 $ B_q(K) $ 都是自由阿贝尔群。同时可以证明，$ B_q(K) $ 是 $ Z_q(K) $ 的子群，这可以由下面的事实得到（$ c \in C_q(K) $）：
 \begin{align*}
 \partial_{q-1} (\partial_q (c)) &= \partial_{q-1} (\sum_{i=0}^q (-1)^i a_0 a_1 \dots \hat{a_i} \dots a_q) \\
 &= \sum_{i=1}^q (-1)^i \partial_{q-1} (a_0 a_1 \dots \hat{a_i} \dots a_q) \\
@@ -45,7 +45,7 @@ $$
 &= 0
 \end{align*}
 
-既然 $ B_q(K) $ 是 $ Z_q(K) $ 的子群，又因为 $ B_q(K) $ 是阿贝尔群，所以 $ B_q(K) $ 是正规子群。于是，我们定义 $ H_q(K) = Z_q(K) / B_q(K) $，即 $ Z_q(K) $ 对 $ B_q(K) $ 的商群。如果 $ K $ 中两个闭链 $ c $，$ c' $属于同一个 $ H_q(K) $ 确定的等价类，则称这两个闭链同调，记为 $ c \sim c' $。
+既然 $ B_q(K) $ 是 $ Z_q(K) $ 的子群，又因为 $ B_q(K) $ 是阿贝尔群，所以 $ B_q(K) $ 是正规子群。于是，我们定义q-同调群 $ H_q(K) $ 为 $ Z_q(K) / B_q(K) $，即 $ Z_q(K) $ 对 $ B_q(K) $ 的商群。如果 $ K $ 中两个闭链 $ c $，$ c' $属于同一个 $ H_q(K) $ 确定的等价类，则称这两个闭链同调，记为 $ c \sim c' $。
 
 由于 $ Z_q(K) $ 和 $ B_q(K) $ 在 $ K $ 为有限集时均为有限生成自由阿贝尔群，则他们的商群也是有限生成阿贝尔群。由有限生成阿贝尔群的分类定理，可以将群分为自由子群和扭子群的直和：
 $$
@@ -61,9 +61,124 @@ $$
 
 所以 $ b_q(K) $ 又可以写作 $ \dim H_q(K; \mathbb{R}) $ 。由此，我们也可以得到在 $ \mathbb{Z}_2 $ 下 $ C_q(K) $，$ Z_q(K) $，$ B_q(K) $ 和 $ H_q(K) $ 均为线性空间，有维度和基的概念。
 
+% \section{闭曲面分类和欧拉特征数}
+
+\section{一维链，闭链，边缘链和同调群的基表示}
+
+下面的讨论均在 $ \mathbb{Z}_2 $ 域下进行。值得注意的是，$ \mathbb{Z}_2 $ 下 $ -1 = 1 $，所以单形的定向在此空间下只有一种，圈、路径等 $ C_m(K) $ 中的元素也不需要指明定向。
+
+一维链群在 $ \mathbb{Z}_2 $ 下的线性空间表示很好得到，其中 $ c_i $ 为边 $ e_i $ 对应的系数。
+$$
+c = \begin{bmatrix}
+        c_1 \\
+        c_2 \\
+        \cdots \\
+        c_{|E|} \\
+    \end{bmatrix} \in C_1(K) \quad (c_i \in \{0, 1\})
+$$
+
+$ C_1(K) $ 的（自然）基为 $ (e_1, \dots, e_{|E|}) $，其中 $ e_i $ 为 $ K $ 的 1-骨架 $ K^1 $ 的第 $ i $ 条边。
+
+考虑 $ K^1 $ 的某个生成树 $ T $，则有 $ |V| - 1 $ 条边在生成树上， $ |E| - |V| + 1 $ 条边不在生成树上。对于不在生成树上的边 $ e_{m_i} $，生成树提供了从边的一个端点到另一个端点的路径，这个路径连同 $ e_{m_i} $ 形成一个圈，记为 $ \gamma(T, e_{m_i}) $。
+
+这样，我们得到了 $ \{ \gamma(T, e_{m_1}), \dots, \gamma(T, e_{m_{k}}) \} $，其中 $ k = |E| - |V| + 1 $。$ \gamma(T, e_{n_i}) $ 和 $ \gamma(T, e_{n_j}) $ 间线性无关，因为 $ e_{n_j} \in \gamma(T, e_{n_i}) $ 当且仅当 $ i = j $。
+
+对于一个任意圈 $ z $，固定树 $ T $ 上的某个顶点 $ s $，记 $ T[s, u] $ 为树上 $ s $ 到 $ u $ 的唯一路径，那么
+$$
+z = \sum_{e=uv \in z} e = \sum_{e=uv \in z} (T[s, u] + e + T[s, v]) = \sum_{e \in z} \gamma(T, e)
+$$
+
+其中第三个等号成立是因为所有在树上的边的 $ T[s, u] + e + T[s, v] = 0 $。由此，我们可以看出，$ \{ \gamma(T, e_{m_1}), \dots, \gamma(T, e_{m_{k}}) \} $ 构成 $ Z_1(K) $ 的一组基，矩阵表示如下：
+$$
+Z = 
+\begin{bmatrix}
+\begin{array}{c|c|c}
+    \gamma(T, e_{m_1}) & \cdots & \gamma(T, e_{m_{k}})
+\end{array}
+\end{bmatrix}
+$$
+
+为了方便，我们引入优先基的概念。给定秩为 $ r $ 的矩阵 $ A $，由 $ A $ 的部分列向量组成的 $ B_{opt} = \{a_{i_1}, \dots, a_{i_r}\} $ 被称为优先基，如果 $ \{ i_1, \dots, i_r \} $ 是让 $ rank(B_{opt}) = rank(A) $ 的，在标号顺序上最小的一组指标集。记 $ EarliestBasis(A) $ 为 $ A $ 的优先基 $ B_{opt} $。
+
+那么，$ B_1(K) $ 的基可以用如下表示，记为 $ B $：
+$$
+B = 
+EarliestBasis(\begin{bmatrix}
+    \begin{array}{c|c|c}
+    \partial_1(f_1) & \cdots & \partial_1(f_{|F|})
+\end{array}
+\end{bmatrix})
+$$
+
+考虑到 $ H_1(K) = Z_1(K) / B_1(K) $，那么
+$$
+\begin{bmatrix}
+    \begin{array}{c|c}
+        B & H
+    \end{array}
+\end{bmatrix} =
+EarliestBasis(\begin{bmatrix}
+    \begin{array}{ccc|c}
+        \partial_1(f_1) & \cdots & \partial_1(f_{|F|}) & Z
+    \end{array}
+\end{bmatrix})
+$$
+
+这是因为 $ \dim H_1 = \dim Z_1 - \dim B_1 $，而 $ \dim B_1 = rank(B) $，所以剩下的 $ rank(Z) - rank(B) $ 个列向量就是 $ H $ 的基了。
+
+有了 $ H $ 的基，我们就可以为每个圈都计算对应的坐标，即同调向量 (homology vector) 了。
+
 \section{计算最短同调圈}
 
 \citet{Busaryev2012} 提出了利用标注 (annotation) 在 $ O(n^\omega + n^2 g^{\omega - 1}) $ 时间复杂度下计算 $ H_1(K; \mathbb{Z}_2) $ 的最优基的算法。
 
 所谓最优基，就是对任意 $ c = \sum_i c_i s_i \in Z_1(K) $，定义 $ w(c) = \sum_i c_i w(s_i) $ 为闭链 $ c $ 的权，并且求一组 $ H_1(K; \mathbb{Z}_2) $ 的基使得 $ \sum_{c} w(c) $ 最小。
 
+算法的主要思路是，在曲面上按权重从短到长排序的圈中，挑选出前 $ 2g $ 个彼此互相不同调的圈构成的基，就是最优基。为了高效的计算，这里需要解决两个问题：
+\begin{enumerate}
+    \item 如何减少需要考虑的圈的数量？
+    \item 如何快速判断两个圈彼此是否同调？
+\end{enumerate}
+
+\subsection{利用紧性质缩小搜索空间}
+
+问题一的解决依赖 \citet{Erickson2005} 中提出的最优基的紧性质。当一个圈 $ l $ 包含 $ l $ 上任意的两点之间的最短路径时，称 $ l $ 具有紧性质。
+
+\begin{proposition}
+    每个 $ H_1(K; \mathbb{Z}_2) $ 的最优基中的圈都具有紧性质。
+\end{proposition}
+\begin{proof}
+    首先，最优基中的每个圈都不能分解为一些更小的圈的并。假设可以分解为两个更小的圈，那一定有一个圈可以被被其它圈表示，则去掉该圈可以找到更优的基。
+
+    若圈 $ l_1 $ 不具有紧性质，取 $ x $ 和 $ y $ 是使得 $ l_1 $ 不包含 $ x $ 到 $ y $ 的最短路，则 $ l_1 $ 被分为两条从 $ y $ 到 $ x $ 的路，分别记为 $ \alpha $ 和 $ \beta $。记 $ \sigma $ 为 $ x $ 到 $ y $ 的最短路，则 $ l'_1 = \alpha \sigma $ 和 $ l''_1 = \beta \sigma $ 中至少有一个不能被其它圈的线性组合所表示，否则其不会出现在基中。由于 $ l'_1 $ 和 $ l''_1 $ 均比 $ l_1 $ 短，设不能被线性表示的圈为 $ l'_1 $，则我们找到了一组更优的基 $ l'_1, l_2, \dots l_{n} $。
+\end{proof}
+
+记 $ T_s $ 为从顶点 $ s $ 开始的权函数意义下的最短路径树，即包含从 $ s $ 到任意点的最短路径的树。同时，记候选圈集合为
+$$
+\Pi = \bigcup_{s \in V} \{ \gamma(T_s, e) | e \in E \setminus E(T_s) \}
+$$
+我们有如下命题成立\cite{Busaryev2012}：
+\begin{proposition}
+    如果按权重升序排列 $ \Pi $ 中的圈，并且为每个圈计算同调向量，那么 $ EarliestBasis(\Pi) $ 是 $ H_1(K; \mathbb{Z}_2) $ 的最优基。
+\end{proposition}
+\begin{proof}
+    只要证明最优基中的圈一定在 $ \Pi $ 中。考虑每个圈 $ \gamma(T_s, e) $，其仅在 $ s $ 到任意一点 $ x \in \gamma(T_s, e) $ 时保留紧性质。事实上，每个紧的圈 $ l $都一定在某个 $ \gamma(T_s, e) $ 中，因为一定存在某个 $ s_i \in l $，且 $ \{\gamma(T_{s_i}, e_1), \dots, \gamma(T_{s_i}, e_{k})\} $ 生成了 1-闭链群，由于 $ l $ 的紧性质，$ l $ 一定为其中一个而不是其中某些的线性组合。因为最优基的圈一定是保留紧性质的圈，所以最优基的圈一定在 $ \Pi $ 中。
+\end{proof}
+
+通过以上命题，我们可以将候选的圈数量变为 $ O(|V|(|E|-|V|+1)) $ 。
+
+\subsection{利用标注快速判断同调关系}
+
+\citet{Busaryev2012} 中提出的标注方法可以帮我们解决问题二。
+
+\begin{definition}
+    一个 p-单形 的标注是一个函数 $ a: C_p(K) \to (\mathbb{Z}_2)^{g} $ 满足此性质：两个 p-圈
+\end{definition}
+
+\subsection{算法框架}
+
+综上，我们可以得到算法的框架如下：
+
+\begin{enumerate}
+    \item 计算
+\end{enumerate}
