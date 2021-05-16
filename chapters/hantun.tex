@@ -1,14 +1,16 @@
 % !TeX root = ../main.tex
 
-\chapter{基于环柄的网格切割算法}
+\chapter{基于把手圈的网格切割算法}
 
 \section{简介}
 
-\citet{oncomputinghantun} 基于几何直观，发现二维流形网格的“把手”和“洞”等特征对于拓扑简化和特征检测都很有帮助。
+\citet{oncomputinghantun} 基于几何直观，发现曲面网格的“把手”和“通道”等特征对于拓扑简化和特征检测都很有帮助，因此提出了把手圈和其形式化定义。在此基础上，\citet{Chai2018}认为把手圈是最短割缝问题的一个好的启发，并且实现了基于把手圈进行曲面切割的方法。
+
+本节首先介绍把手圈形式化描述所需要的基本知识，即单纯同调论和 $ \mathbb{Z}_2 $ 系数域下同调论描述的几个群的基表示，然后再给出计算 $ H_1(K; \mathbb{Z}_2) $ 的最优基的算法。之后，本节会介绍把手圈的形式化定义，以及一个基于前述算法的、计算把手圈的算法。
 
 \section{单纯同调论}
 
-单纯同调论 (Simplicial homology) 是描述欧氏空间中具有组合结构的空间的同调论，又被称为组合拓扑学。
+单纯同调论 (Simplicial homology) 是描述欧氏空间中具有组合结构的空间的同调论。根据其研究的主要方法，单纯同调论又被称为组合拓扑学。
 
 $ R_n $ 中处于一般位置的 $ n + 1 $ 个点 $ \{a_0, \dots, a_n\} $ ($n > 0$)的凸组合被称为一个 $ n $ 维单纯形，简称 n-单形，记作 $ (a_0, a_1, \dots, a_n) $。称 $ a_i$ 为其顶点。
 
@@ -126,9 +128,12 @@ $$
 
 这是因为 $ \dim H_1 = \dim Z_1 - \dim B_1 $，而 $ \dim B_1 = rank(B) $，所以剩下的 $ rank(Z) - rank(B) $ 个列向量就是 $ H $ 的基了。
 
+$ H $ 的维数在闭曲面且为 $ nT^2 $ 类型时也被成为亏格，用 $ g $ 表示。此时，$ g $ 和欧拉特征数 $ \chi(K) = |V| - |E| + |F| $ 满足关系 $ \chi(K) = 2 - 2g $，此关系是 Euler-Poincare 公式的自然结论。
+
 有了 $ H $ 的基，我们就可以为每个圈都计算对应的坐标，即同调向量 (homology vector) 了。
 
 \section{计算最短同调圈}
+\label{sec:shortest-h1m}
 
 \citet{Busaryev2012} 提出了利用标注 (annotation) 在 $ O(n^\omega + n^2 g^{\omega - 1}) $ 时间复杂度下计算 $ H_1(K; \mathbb{Z}_2) $ 的最优基的算法。
 
@@ -168,17 +173,91 @@ $$
 通过以上命题，我们可以将候选的圈数量变为 $ O(|V|(|E|-|V|+1)) $ 。
 
 \subsection{利用标注快速判断同调关系}
+\label{subsec:annotation}
 
 \citet{Busaryev2012} 中提出的标注方法可以帮我们解决问题二。
 
 \begin{definition}
-    一个 p-单形 的标注是一个函数 $ a: C_p(K) \to (\mathbb{Z}_2)^{g} $ 满足此性质：两个 p-圈
+    一个 p-单形 的标注是一个函数 $ a: C_p(K) \to (\mathbb{Z}_2)^{g} $。两个 p-闭链 $ z $ 和 $ z' $ 彼此同调，当且仅当
+    \begin{equation*}
+        \sum_{\sigma \in z} a(\sigma) = \sum_{\sigma \in z'} a(\sigma)
+    \end{equation*}
+    此时，该 p-闭链的标注被定义为 $ a(z) = \sum_{\sigma \in z} a(\sigma) $。
 \end{definition}
+
+计算标注的方法如下所示：
+\begin{enumerate}
+    \item \emph{计算 $ Z_1(K) $ 的基}\quad 固定某个 $ K^1 $ 的生成树 $ T $，记 $ k = |E| - |V| + 1 $，$ E \setminus E(T) $ 的各边为 $ e_{m_1}, \dots, e_{m_k} $，则可以构造基 $ \{ \gamma(T, e_{m_1}), \dots, \gamma(T, e_{m_{k}}) \} $。
+    \item \emph{计算 $ H_1(K) $ 的基}\quad 通过计算 $ EarliestBasis([B | Z]) $ 并移除前 $ rank(B) $ 列得到的剩余列向量，记为 $ H $，即为 $ H_1(K) $ 的基。同时，记 $ \tilde{Z} = [B | Z] $。
+    \item \emph{计算标注}\quad 对每个圈 $ z = \gamma(T, e) $，其坐标是满足 $ \tilde{Z} x = z $ 的 $ x $ 的最后 $ rank(Z) - rank(B) $ 个分量，这些作为该圈的标注。我们令 $ E(T) $ 上的边对应的标注为零向量，令 $ E \setminus E(T) $ 上的边对应的标注为对应的圈的标注，这样就得到了所有边的标注。
+\end{enumerate}
+
+有了标注，我们只需要计算两个圈的标注是否相同，就可以判断两个圈是否同调了。这样，我们就解决了问题二。
 
 \subsection{算法框架}
 
 综上，我们可以得到算法的框架如下：
 
 \begin{enumerate}
-    \item 计算
+    \item 以任意一点为源点，计算生成树 $ T $，然后按照第\ref{subsec:annotation}节中的方法计算每个边的标注向量 $ a(z) $。
+    \item 对 $ K $ 的每个顶点 $ s $：
+    \begin{enumerate}
+        \item 计算 $ s $ 出发的最短路径树，得到圈 $ \gamma(T_s, e_{m_1}), \dots, \gamma(T_s, e_{m_k}) $。
+        \item 计算每个圈的权重和标注，并加入候选圈集合。
+    \end{enumerate}
+    \item 选出以总权重从小到大排列的候选圈的前 $ 2g $ 个彼此互相不同调的圈，即为要求的最优基。
 \end{enumerate}
+
+\section{计算把手圈}
+
+\citet{oncomputinghantun} 引入了把手圈 (handle loop) 和通道圈 (tunnel loop) 的概念。
+
+直观上，把手圈和通道圈描述了曲面的一些几何特征，这些特征可以用来切割曲面。图 \ref{fig:hantuncadgadget} 展示了一个 CAD 工件上的一些把手圈和通道圈。
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{hantun-cad-gadget.png}
+    \caption{CAD 工件：红色圈为通道圈，绿色圈为把手圈}
+    \label{fig:hantuncadgadget}
+    \note{图片源自 \citet{oncomputinghantun}}
+\end{figure}
+
+考虑一个可定向闭曲面 $ \mathcal{M} $，将其放在一个三维球 $ S^3 $ 中，其将 $ S^3 $ 分为两部分。给定曲面的定向，我们称 $ S^3 \setminus \mathcal{M} $ 的两个连通片分别为内部和外部，分别记作 $ I $ 和 $ O $。我们定义
+$$
+\mathbb{I} = I \cup \mathcal{M}, \quad \mathbb{O} = O \cup \mathcal{M}
+$$
+
+那么，我们可以给出把手圈和通道圈的定义。
+
+\begin{definition}
+    $ c \in Z_1(M) $
+    \begin{enumerate}
+        \item $ c $ 是把手圈，如果 $ c \in B_1(\mathbb{I}) $ 且 $ c \notin B_1(\mathbb{O}) $
+        \item $ c $ 是通道圈，如果 $ c \in B_1(\mathbb{O}) $ 且 $ c \notin B_1(\mathbb{I}) $
+    \end{enumerate}
+\end{definition}
+
+我们观察到，如果我们沿着把手圈切割 $ \mathcal{M} $，并且将每个把手圈切割后剩下的“空洞”分别用两个圆盘补上，我们就可以“消灭”一个把手圈。这可以由以下命题以及闭曲面 $ nT^2 $ 的性质得到：
+
+\begin{proposition}
+    对于亏格为 $ g $ 的可定向闭曲面 $ \mathcal{M} \subset S^3 $，存在 $ g $ 个把手圈 $ \{h_i\}_{i=1}^{g} $ 和 $ g $ 个通道圈 $ \{g_i\}_{i=1}^{g} $ ，分别构成 $ H_1(\mathbb{O}) $ 和 $ H_1(\mathbb{I}) $ 的基，且 $ \{h_i\}_{i=1}^{g} $ 和 $ \{t_i\}_{i=1}^{g} $ 构成 $ H_1(\mathcal{M}) $ 的一组基。
+\end{proposition}
+
+这个命题的证明可以参考 \citet{oncomputinghantun}。
+
+考虑到第\ref{sec:shortest-h1m}节处计算最短同调圈的工作，我们是否可以通过求解 $ H_1(\mathcal{M}) $ 的一组基来计算 $ H_1(\mathbb{O}) $ 的基呢？答案是否定的，因为两个线性空间的直和的一组基并不一定能够直接拆分为两个线性空间各自的基。
+
+不过，我们可以将其中的技术迁移到最短把手圈的计算上。我们只要：
+\begin{enumerate}
+    \item 对 $ H_1(\mathbb{O}) $ 进行三角剖分，得到单复形表示
+    \item 求 $ H_1(\mathbb{O}) $ 的一组基，并且筛选时只选择在 $ H_1(\mathcal{M}) $ 上的圈
+\end{enumerate}
+就可以获得最短同调圈集 $ \{h_i\}_{i=1}^{g} $。
+
+应用 $ \{h_i\}_{i=1}^{g} $，我们可以得到\citet{ShuangmingChaiThesis}工作中的基于把手圈的网格切割算法：
+\begin{enumerate}
+    \item 计算最短同调圈集 $ \{h_i\}_{i=1}^{g} $
+    \item 构造割线集 $ C $ 为所有 $ h_i $ 之并，同时再加入任意两个相邻的边，应用该割线集进行切割
+\end{enumerate}
+
+这样，我们就可以得到多了 $ 2g $ 个洞的圆盘，我们将多余的洞补上就可以得到拓扑圆盘。

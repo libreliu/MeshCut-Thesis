@@ -78,6 +78,112 @@ title = {{Greedy optimal homotopy and homology generators}},
 year = {2005}
 }
 
+@phdthesis{ShuangmingChaiThesis,
+  author       = {柴双明}, 
+  title        = {面向低扭曲参数化的网格切割方法研究},
+  school       = {中国科学技术大学},
+  year         = 2019
+}
+
+@article{atlasgen,
+author = {Liu, Hao-Yu and Fu, Xiao-Ming and Ye, Chunyang and Chai, Shuangming and Liu, Ligang},
+title = {Atlas Refinement with Bounded Packing Efficiency},
+year = {2019},
+issue_date = {July 2019},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {38},
+number = {4},
+issn = {0730-0301},
+url = {https://doi.org/10.1145/3306346.3323001},
+doi = {10.1145/3306346.3323001},
+abstract = {We present a novel algorithm to refine an input atlas with bounded packing efficiency. Central to this method is the use of the axis-aligned structure that converts the general polygon packing problem to a rectangle packing problem, which is easier to achieve high packing efficiency. Given a parameterized mesh with no flipped triangles, we propose a new angle-driven deformation strategy to transform it into a set of axis-aligned charts, which can be decomposed into rectangles by the motorcycle graph algorithm. Since motorcycle graphs are not unique, we select the one balancing the trade-off between the packing efficiency and chart boundary length, while maintaining bounded packing efficiency. The axis-aligned chart often contains greater distortion than the input, so we try to reduce the distortion while bounding the packing efficiency and retaining bijection. We demonstrate the efficacy of our method on a data set containing over five thousand complex models. For all models, our method is able to produce packed atlases with bounded packing efficiency; for example, when the packing efficiency bound is set to 80%, we elongate the boundary length by an average of 78.7% and increase the distortion by an average of 0.0533%. Compared to state-of-the-art methods, our method is much faster and achieves greater packing efficiency.},
+journal = {ACM Trans. Graph.},
+month = jul,
+articleno = {33},
+numpages = {13},
+keywords = {bounded packing efficiency, atlas refinement, axis-aligned chart}
+}
+
+@article{DeVerdiere2005,
+abstract = {Every compact orientable boundaryless surface M can be cut along simple loops with a common point v0, pairwise disjoint except at v 0, so that the resulting surface is a topological disk; such a set of loops is called a system of loops for M. The resulting disk may be viewed as a polygon in which the sides are pairwise identified on the surface; it is called a polygonal schema. Assuming that M is a combinatorial surface, and that each edge has a given length, we are interested in a shortest (or optimal) system of loops homotopic to a given one, drawn on the vertex-edge graph of M. We prove that each loop of such an optimal system is a shortest loop among all simple loops in its homotopy class. We give an algorithm to build such a system, which has polynomial running time if the lengths of the edges are uniform. As a byproduct, we get an algorithm with the same running time to compute a shortest simple loop homotopic to a given simple loop. {\textcopyright} 2004 Springer-Verlag New York, LLC.},
+author = {{De Verdi{\'{e}}re}, {\'{E}}ric Colin and Lazarus, Francis},
+doi = {10.1007/s00454-004-1150-2},
+file = {:home/libreliu/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/De Verdi{\'{e}}re, Lazarus - 2005 - Optimal system of loops on an orientable surface.pdf:pdf},
+issn = {14320444},
+journal = {Discrete and Computational Geometry},
+number = {3},
+pages = {507--534},
+title = {{Optimal system of loops on an orientable surface}},
+volume = {33},
+year = {2005}
+}
+
+@article{Chai2018,
+abstract = {We present a novel algorithm to compute high-quality cuts for generating low isometric distortion planar parameterizations. Based on the observation that conformal spherical and planar parameterizations have similar distortion distributions at the extrusive areas that lead to high isometric distortions, our method utilizes a spherical parameterization of the input mesh to guide the cut construction. After parameterizing the input mesh onto a sphere as conformal as possible, a hierarchical clustering of the divisive type is conducted on the sphere to find high isometric distortion regions, where high isometric distortion may also be introduced in the planar parameterization and which are connected to define a cut. Compared with previous methods, this approach can generate better cuts, resulting in lower isometric distortions. We demonstrate the efficacy and practical robustness of our method on a data set of over 5000 meshes, which are parameterized with low isometric distortion by two existing parameterization approaches.},
+author = {Chai, Shuangming and Fu, Xiao Ming and Hu, Xin and Yang, Yang and Liu, Ligang},
+doi = {10.1016/j.cag.2018.05.007},
+file = {:home/libreliu/Downloads/1-s2.0-S0097849318300669-main.pdf:pdf},
+issn = {00978493},
+journal = {Computers and Graphics (Pergamon)},
+keywords = {Hierarchical clustering,Low isometric distortion,Planar parameterizations,Sphere-based cut construction},
+pages = {66--75},
+publisher = {Elsevier Ltd},
+title = {{Sphere-based cut construction for planar parameterizations}},
+url = {https://doi.org/10.1016/j.cag.2018.05.007},
+volume = {74},
+year = {2018}
+}
+
+@article{Dey2013,
+abstract = {A special family of non-trivial loops on a surface called handle and tunnel loops associates closely to geometric features of "handles" and "tunnels" respectively in a 3D model. The identification of these handle and tunnel loops can benefit a broad range of applications from topology simplification / repair, and surface parameterization, to feature and shape recognition. Many of the existing efficient algorithms for computing non-trivial loops cannot be used to compute these special type of loops. The two algorithms known for computing handle and tunnel loops provably have a serious drawback that they both require a tessellation of the interior and exterior spaces bounded by the surface. Computing such a tessellation of three dimensional space around the surface is a non-trivial task and can be quite expensive. Furthermore, such a tessellation may need to refine the surface mesh, thus causing the undesirable side-effect of outputting the loops on an altered surface mesh. In this paper, we present an efficient algorithm to compute a basis for handle and tunnel loops without requiring any 3D tessellation. This saves time considerably for large meshes making the algorithm scalable while computing the loops on the original input mesh and not on some refined version of it. We use the concept of the Reeb graph which together with several key theoretical insights on linking number provide an initial set of loops that provably constitute a handle and a tunnel basis. We further develop a novel strategy to tighten these handle and tunnel basis loops to make them geometrically relevant. We demonstrate the efficiency and effectiveness of our algorithm as well as show its robustness against noise, and other anomalies in the input. Copyright {\textcopyright} ACM 2013.},
+author = {Dey, Tamal K. and Fan, Fengtao and Wang, Yusu},
+doi = {10.1145/2461912.2462017},
+file = {:home/libreliu/Downloads/2461912.2462017.pdf:pdf},
+issn = {07300301},
+journal = {ACM Transactions on Graphics},
+keywords = {Geometric processing,Handle and tunnel loops,Reeb graph,Surface features},
+number = {4},
+title = {{An efficient computation of handle and tunnel loops via Reeb graphs}},
+volume = {32},
+year = {2013}
+}
+
+@article{Dey2008,
+abstract = {Many applications such as topology repair, model editing, surface parameterization, and feature recognition benefit from computing loops on surfaces that wrap around their 'handles' and 'tunnels'. Computing such loops while optimizing their geometric lengths is difficult. On the other hand, computing such loops without considering geometry is easy but may not be very useful. In this paper we strike a balance by computing topologically correct loops that are also geometrically relevant. Our algorithm is a novel application of the concepts from topological persistence introduced recently in computational topology. The usability of the computed loops is demonstrated with some examples in feature identification and topology simplification. {\textcopyright} 2008 ACM.},
+author = {Dey, Tamal K. and Li, Kuiyu and Sun, Jian and Cohen-Steiner, David},
+doi = {10.1145/1360612.1360644},
+file = {:home/libreliu/Downloads/1360612.1360644.pdf:pdf},
+issn = {07300301},
+journal = {ACM Transactions on Graphics},
+keywords = {Feature identification,Persistent homology,Shape analysis,Surface loop,Topology,Topology repair},
+number = {3},
+pages = {1--10},
+title = {{Computing geometry-aware handle and tunnel loops in 3D models}},
+volume = {27},
+year = {2008}
+}
+
+@article{Poranne2017,
+abstract = {We propose a UV mapping algorithm that jointly optimizes for cuts and distortion, sidestepping heuristics for placing the cuts. The energy we minimize is a state-of-the-art geometric distortion measure, generalized to take seams into account. Our algorithm is designed to support an interactive workflow: it optimizes UV maps on the fly, while the user can interactively move vertices, cut mesh parts, join seams, separate overlapping regions, and control the placement of the parameterization patches in the UV space. Our UV maps are of high quality in terms of both geometric distortion and cut placement, and compare favorably to those designed with traditional modeling tools. The UV maps can be created in a fraction of the time as existing methods, since our algorithm drastically alleviates the trial-and-error, iterative procedures that plague traditional UV mapping approaches.},
+author = {Poranne, Roi and Tarini, Marco and Huber, Sandro and Panozzo, Daniele and Sorkine-Hornung, Olga},
+doi = {10.1145/3130800.3130845},
+file = {:home/libreliu/Downloads/3130800.3130845.pdf:pdf},
+issn = {15577368},
+journal = {ACM Transactions on Graphics},
+keywords = {Cuts,Distortion minimization,Parameterization,UV mapping},
+number = {6},
+title = {{Autocuts: Simultaneous distortion and cut optimization for UV mapping}},
+volume = {36},
+year = {2017}
+}
+
+@misc{wysiwyg,
+author = {Bruno, Vallet and Levy, Bruno},
+year = {2009},
+howpublished = {Research report of inria-00600243},
+title = {What you seam is what you get}
+}
 
 @article{knuth84,
   author    = {Donald E. Knuth},
