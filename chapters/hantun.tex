@@ -1,12 +1,12 @@
 % !TeX root = ../main.tex
 
-\chapter{基于把手圈的网格切割算法}
+\chapter{基于柄圈的网格切割算法}
 
 \section{简介}
 
-\citet{oncomputinghantun} 基于几何直观，发现曲面网格的“把手”和“通道”等特征对于拓扑简化和特征检测都很有帮助，因此提出了把手圈和其形式化定义。在此基础上，\citet{Chai2018}认为把手圈是最短割缝问题的一个好的启发，并且实现了基于把手圈进行曲面切割的方法。
+\citet{oncomputinghantun} 基于几何直观，发现曲面网格的“把手”和“通道”等特征对于拓扑简化和特征检测都很有帮助，因此提出了柄圈和其形式化定义。在此基础上，\citet{Chai2018}认为柄圈是最短割缝问题的一个好的启发，并且实现了基于柄圈进行曲面切割的方法。
 
-本节首先介绍把手圈形式化描述所需要的基本知识，即单纯同调论和 $ \mathbb{Z}_2 $ 系数域下同调论描述的几个群的基表示，然后再给出计算 $ H_1(K; \mathbb{Z}_2) $ 的最优基的算法。之后，本节会介绍把手圈的形式化定义，以及一个基于前述算法的、计算把手圈的算法。
+本节首先介绍柄圈形式化描述所需要的基本知识，即单纯同调论和 $ \mathbb{Z}_2 $ 系数域下同调论描述的几个群的基表示，然后再给出计算 $ H_1(K; \mathbb{Z}_2) $ 的最优基的算法。之后，本节会介绍柄圈的形式化定义，以及一个基于前述算法的、计算柄圈的算法。
 
 \section{单纯同调论}
 
@@ -220,16 +220,16 @@ $$
     \item 选出以总权重从小到大排列的候选圈的前 $ 2g $ 个彼此互相不同调的圈，即为要求的最优基。
 \end{enumerate}
 
-\section{计算把手圈}
+\section{计算柄圈}
 
-\citet{oncomputinghantun} 引入了把手圈 (handle loop) 和通道圈 (tunnel loop) 的概念。
+\citet{oncomputinghantun} 引入了柄圈 (handle loop) 和通道圈 (tunnel loop) 的概念。
 
-直观上，把手圈和通道圈描述了曲面的一些几何特征，这些特征可以用来切割曲面。图 \ref{fig:hantuncadgadget} 展示了一个 CAD 工件上的一些把手圈和通道圈。
+直观上，柄圈和通道圈描述了曲面的一些几何特征，这些特征可以用来切割曲面。图 \ref{fig:hantuncadgadget} 展示了一个 CAD 工件上的一些柄圈和通道圈。
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{hantun-cad-gadget.png}
-    \caption{CAD 工件：红色圈为通道圈，绿色圈为把手圈}
+    \caption{CAD 工件：红色圈为通道圈，绿色圈为柄圈}
     \label{fig:hantuncadgadget}
     \note{图片源自 \citet{oncomputinghantun}}
 \end{figure}
@@ -239,34 +239,34 @@ $$
 \mathbb{I} = I \cup \mathcal{M}, \quad \mathbb{O} = O \cup \mathcal{M}
 $$
 
-那么，我们可以给出把手圈和通道圈的定义。
+那么，我们可以给出柄圈和通道圈的定义。
 
 \begin{definition}
     $ c \in Z_1(M) $
     \begin{enumerate}
-        \item $ c $ 是把手圈，如果 $ c \in B_1(\mathbb{I}) $ 且 $ c \notin B_1(\mathbb{O}) $
+        \item $ c $ 是柄圈，如果 $ c \in B_1(\mathbb{I}) $ 且 $ c \notin B_1(\mathbb{O}) $
         \item $ c $ 是通道圈，如果 $ c \in B_1(\mathbb{O}) $ 且 $ c \notin B_1(\mathbb{I}) $
     \end{enumerate}
 \end{definition}
 
-我们观察到，如果我们沿着把手圈切割 $ \mathcal{M} $，并且将每个把手圈切割后剩下的“空洞”分别用两个圆盘补上，我们就可以“消灭”一个把手圈。这可以由以下命题以及闭曲面 $ nT^2 $ 的性质得到：
+我们观察到，如果我们沿着柄圈切割 $ \mathcal{M} $，并且将每个柄圈切割后剩下的“空洞”分别用两个圆盘补上，我们就可以“消灭”一个柄圈。这可以由以下命题以及闭曲面 $ nT^2 $ 的性质得到：
 
 \begin{proposition}
-    对于亏格为 $ g $ 的可定向闭曲面 $ \mathcal{M} \subset S^3 $，存在 $ g $ 个把手圈 $ \{h_i\}_{i=1}^{g} $ 和 $ g $ 个通道圈 $ \{g_i\}_{i=1}^{g} $ ，分别构成 $ H_1(\mathbb{O}) $ 和 $ H_1(\mathbb{I}) $ 的基，且 $ \{h_i\}_{i=1}^{g} $ 和 $ \{t_i\}_{i=1}^{g} $ 构成 $ H_1(\mathcal{M}) $ 的一组基。
+    对于亏格为 $ g $ 的可定向闭曲面 $ \mathcal{M} \subset S^3 $，存在 $ g $ 个柄圈 $ \{h_i\}_{i=1}^{g} $ 和 $ g $ 个通道圈 $ \{g_i\}_{i=1}^{g} $ ，分别构成 $ H_1(\mathbb{O}) $ 和 $ H_1(\mathbb{I}) $ 的基，且 $ \{h_i\}_{i=1}^{g} $ 和 $ \{t_i\}_{i=1}^{g} $ 构成 $ H_1(\mathcal{M}) $ 的一组基。
 \end{proposition}
 
 这个命题的证明可以参考 \citet{oncomputinghantun}。
 
 考虑到第\ref{sec:shortest-h1m}节处计算最短同调圈的工作，我们是否可以通过求解 $ H_1(\mathcal{M}) $ 的一组基来计算 $ H_1(\mathbb{O}) $ 的基呢？答案是否定的，因为两个线性空间的直和的一组基并不一定能够直接拆分为两个线性空间各自的基。
 
-不过，我们可以将其中的技术迁移到最短把手圈的计算上。我们只要：
+不过，我们可以将其中的技术迁移到最短柄圈的计算上。我们只要：
 \begin{enumerate}
     \item 对 $ H_1(\mathbb{O}) $ 进行三角剖分，得到单复形表示
     \item 求 $ H_1(\mathbb{O}) $ 的一组基，并且筛选时只选择在 $ H_1(\mathcal{M}) $ 上的圈
 \end{enumerate}
 就可以获得最短同调圈集 $ \{h_i\}_{i=1}^{g} $。
 
-应用 $ \{h_i\}_{i=1}^{g} $，我们可以得到\citet{ShuangmingChaiThesis}工作中的基于把手圈的网格切割算法：
+应用 $ \{h_i\}_{i=1}^{g} $，我们可以得到\citet{ShuangmingChaiThesis}工作中的基于柄圈的网格切割算法：
 \begin{enumerate}
     \item 计算最短同调圈集 $ \{h_i\}_{i=1}^{g} $
     \item 构造割线集 $ C $ 为所有 $ h_i $ 之并，同时再加入任意两个相邻的边，应用该割线集进行切割
