@@ -11,13 +11,13 @@
 }
 
 \begin{abstract}
-  计算机图形学在近年来发展迅速。无论是在工业设计、互动娱乐还是在日常生活中，图形学的应用无处不在。构建图形学大厦的基石之一就是连续曲面的离散表示——网格，而许多几何处理方法依赖网格具有一定的拓扑性质，这其中绝大多数方法又要求网格为圆盘拓扑。所以，将高亏格的网格在位置不变的情况下，通过连通性的变化变为圆盘拓扑的网格，是数字几何处理应用的一个基本问题。
+  计算机图形学在近年来发展迅速。无论是在工业设计、互动娱乐还是在日常生活中，图形学的应用无处不在。构建图形学大厦的基石之一就是连续曲面的离散表示——网格，而许多几何处理方法依赖网格具有一定的拓扑性质，这其中绝大多数方法又要求网格为圆盘拓扑。考虑到日常我们遇到的网格大多非圆盘拓扑，所以将高亏格的网格在位置不变的情况下，通过连通性的变化变为圆盘拓扑的网格，是数字几何处理应用的一个基本问题。
   
-  本文首先介绍了曲面和曲面网格的定义，并给出了给定割线集情况下的基于 Euler 图的局域网格切割基本方法。之后，本文给出了来自 Geometry Images 中的简单网格切割算法实例。
+  为了精确的讨论曲面网格概念本身，本文首先介绍了曲面和曲面网格的定义。之后，本文给出了割线集的定义，以及给定割线集情况下的基于 Euler 图的局域网格切割基本方法。作为一种典型方法的说明，本文介绍来自 Geometry Images 中的简单网格切割算法。
   
-  一些几何处理问题，如参数化和图集生成，需要寻找长度尽可能短的割线集。本文回顾了代数拓扑中单纯同调论的基本知识，总结了割线集优化的相关结果，并且复现了计算在权重函数最短意义下的 $ \mathbb{Z}_2 $ 域一维同调群基向量组的工作，此工作可以为计算基于把手链的闭曲面网格切割算法提供帮助。之后，本文介绍了柄圈的形式化定义和基本计算方法，并给出了基于 TetGen 网格剖分工具的实验性实现。
+  一些几何处理问题，如参数化和图集生成，需要寻找长度尽可能短的割线集，但寻找最优割线集问题本身是 NP-Hard 问题。本文回顾了代数拓扑中单纯同调论的基本知识，总结了割线集优化的相关结果，并且复现了计算在权重函数最短意义下的 $ \mathbb{Z}_2 $ 域一维同调群基向量组的工作，此工作可以为计算基于柄圈的闭曲面网格切割算法提供帮助。之后，本文介绍了柄圈的形式化定义和基本计算方法，并介绍了基于 TetGen 网格剖分工具进行柄圈计算的实现思路。
 
-  最后，本文对比了实现的部分方法在不同模型数据上的性能表现。
+  最后，本文对比了实现的部分方法在不同模型数据上的性能表现，并且探讨了之后的工作可能的发展方向。
 
   % 摘要分中文和英文两种，中文在前，英文在后，博士论文中文摘要一般 800～1500 个汉字，硕士论文中文摘要一般 500～1000 个汉字。
   % 英文摘要的篇幅参照中文摘要。
@@ -32,13 +32,13 @@
 \end{abstract}
 
 \begin{abstract*}
-  Computer graphics has been rapidly evolving in recent years. Being widely used in industrial design and interactive entertainment, computer graphics are used everywhere in our daily life. One of the foundations of computer graphics lies on meshes, which are discrete representations of continous surfaces. Many geometry processing procedures require certain topological characteristics of the input mesh, and in which a topological disk is required most. Therefore, it's a fundamental problem for digital geometry processing applications to generate a mesh topologically equivalent to a disk from a high genus meshes, with transformations imposed on connectivity instead of geometry only. 
+  Computer graphics has been rapidly evolving in recent years. Being widely used in industrial design and interactive entertainment, computer graphics are used everywhere in our daily life. One of the foundations of computer graphics lies on meshes, which are discrete representations of continous surfaces. Many geometry processing procedures require certain topological characteristics of the input mesh, and in which a topological disk is required most. Considering that most of the meshes we met are not topologically equivalent to a disk, therefore, it's a fundamental problem for digital geometry processing applications to generate a mesh topologically equivalent to a disk from a high genus meshes, with transformations imposed on connectivity instead of geometry only. 
 
   This dissertation first introduces the definition of surface and surface meshes. Then, given the cut graph as input, an Euler-circuit based local mesh cutting algorithm is shown. After that, a simple example taken from \textit{Geometry Images} is shown.
 
-  Some of the grometry processing applications, such as parameterization and atlas generation, requires a cut graph with its total length as minimal as possible. This dissertation recalls elementary knowledge of algebratic topology and simplicial homology, summarizes related conclusions related to cut graph optimization. Then, this dissertation gives an implementation of calculating the minimal homology basis under $ \mathbb{Z}_2 $ coefficient field with respect to the weight function, which can be used for the cutting algorithm based on handle loops. After that, this dissertation introduces the concept of handle and tunnel loops, how they can be used in mesh cutting algorithms, and an expermental implementation with the help of mesh tetrahedralization utility TetGen.
+  Some of the grometry processing applications, such as parameterization and atlas generation, requires a cut graph with its total length as minimal as possible. This problem, however, is NP-Hard in general. This dissertation recalls elementary knowledge of algebratic topology and simplicial homology, summarizes related conclusions related to cut graph optimization. Then, this dissertation gives an implementation of calculating the minimal homology basis under $ \mathbb{Z}_2 $ coefficient field with respect to the weight function, which can be used for the cutting algorithm based on handle loops. After that, this dissertation introduces the concept of handle and tunnel loops, how they can be used in mesh cutting algorithms, and an expermental implementation with the help of mesh tetrahedralization utility TetGen.
 
-  In the end, this dissertation compares performances on different models of the algorithms implemented.
+  In the end, this dissertation compares performances on different models of the algorithms implemented, and discusses the possibilities of future studies.
 
   % This is a sample document of USTC thesis \LaTeX{} template for bachelor,
   % master and doctor. The template is created by zepinglee and seisman, which
