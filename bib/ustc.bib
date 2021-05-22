@@ -12,6 +12,104 @@ title = {{Geometry images}},
 year = {2002}
 }
 
+@article{Floater1997,
+abstract = {A method based on graph theory is investigated for creating global parametrizations for surface triangulations for the purpose of smooth surface fitting. The parametrizations, which are planar triangulations, are the solutions of linear systems based on convex combinations. A particular parametrization, called shape-preserving, is found to lead to visually smooth surface approximations.},
+author = {Floater, Michael S.},
+doi = {10.1016/S0167-8396(96)00031-3},
+file = {:home/libreliu/Downloads/Floater97.pdf:pdf},
+issn = {01678396},
+journal = {Computer Aided Geometric Design},
+keywords = {Approximation,Parametrization,Planar graphs,Straight-line drawing,Surface triangulations},
+number = {3},
+pages = {231--250},
+title = {{Parametrization and smooth approximation of surface triangulations}},
+volume = {14},
+year = {1997}
+}
+
+@article{Haker2000,
+abstract = {In this paper, we give an explicit method for mapping any simply connected surface onto the sphere in a manner which preserves angles. This technique relies on certain conformal mappings from differential geometry. Our method provides a new way to automatically assign texture coordinates to complex undulating surfaces. We demonstrate a finite element method that can be used to apply our mapping technique to a triangulated geometric description of a surface.},
+author = {Haker, Steven and Angenent, Sigurd and Tannenbaum, Allen and Kikinis, Ron and Sapiro, Guillermo and Halle, Michael},
+doi = {10.1109/2945.856998},
+file = {:home/libreliu/Downloads/00856998.pdf:pdf},
+issn = {10772626},
+journal = {IEEE Transactions on Visualization and Computer Graphics},
+number = {2},
+pages = {181--189},
+title = {{Conformal surface parameterization for texture mapping}},
+volume = {6},
+year = {2000}
+}
+
+@misc{teimury2020graphseam,
+      title={GraphSeam: Supervised Graph Learning Framework for Semantic UV Mapping}, 
+      author={Fatemeh Teimury and Bruno Roy and Juan Sebastián Casallas and David MacDonald and Mark Coates},
+      year={2020},
+      eprint={2011.13748},
+      archivePrefix={arXiv},
+      primaryClass={cs.GR}
+}
+
+@article{Desbrun2002,
+abstract = {Parameterization of discrete surfaces is a fundamental and widely-used operation in graphics, required, for instance, for texture mapping or remeshing. As 3D data becomes more and more detailed, there is an increased need for fast and robust techniques to automatically compute least-distorted parameterizations of large meshes. In this paper, we present new theoretical and practical results on the parameterization of triangulated surface patches. Given a few desirable properties such as rotation and translation invariance, we show that the only admissible parameterizations form a two-dimensional set and each parameterization in this set can be computed using a simple, sparse, linear system. Since these parameterizations minimize the distortion of different intrinsic measures of the original mesh, we call them Intrinsic Parameterizations. In addition to this partial theoretical analysis, we propose robust, efficient and tunable tools to obtain least-distorted parameterizations automatically. In particular, we give details on a novel, fast technique to provide an optimal mapping without fixing the boundary positions, thus providing a unique Natural Intrinsic Parameterization. Other techniques based on this parameterization family, designed to ease the rapid design of parameterizations, are also proposed.},
+author = {Desbrun, Mathieu and Meyer, Mark and Alliez, Pierre},
+doi = {10.1111/1467-8659.00580},
+file = {:home/libreliu/Downloads/DMA02.pdf:pdf},
+issn = {01677055},
+journal = {Computer Graphics Forum},
+number = {3},
+pages = {209--218},
+title = {{Intrinsic parameterizations of surface meshes}},
+volume = {21},
+year = {2002}
+}
+
+@article{qdmeshseg,
+author = {Julius, Dan and Kraevoy, Vladislav and Sheffer, Alla},
+title = {D-Charts: Quasi-Developable Mesh Segmentation},
+journal = {Computer Graphics Forum},
+volume = {24},
+number = {3},
+pages = {581-590},
+doi = {https://doi.org/10.1111/j.1467-8659.2005.00883.x},
+url = {https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-8659.2005.00883.x},
+eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1467-8659.2005.00883.x},
+year = {2005}
+}
+
+@article{KhodakovskyLS03,
+  author    = {Andrei Khodakovsky and
+               Nathan Litke and
+               Peter Schr{\"{o}}der},
+  title     = {Globally smooth parameterizations with low distortion},
+  journal   = {{ACM} Trans. Graph.},
+  volume    = {22},
+  number    = {3},
+  pages     = {350--357},
+  year      = {2003},
+  url       = {https://doi.org/10.1145/882262.882275},
+  doi       = {10.1145/882262.882275},
+  timestamp = {Tue, 14 May 2019 17:07:34 +0200},
+  biburl    = {https://dblp.org/rec/journals/tog/KhodakovskyLS03.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{Li2018,
+abstract = {Low-distortion mapping of three-dimensional surfaces to the plane is a critical problem in geometry processing. The intrinsic distortion introduced by these UV mappings is highly dependent on the choice of surface cuts that form seamlines which break mapping continuity. Parameterization applications typically require UV maps with an application-specic upper bound on distortion to avoid mapping artifacts; at the same time they seek to reduce cut lengths to minimize discontinuity artifacts. We propose OptCuts, an algorithm that jointly optimizes the parameterization and cutting of a three-dimensional mesh. OptCuts starts from an arbitrary initial embedding and a user-requested distortion bound. It requires no parameter setting and automatically seeks to minimize seam lengths subject to satisfying the distortion bound of the mapping computed using these seams. OptCuts alternates between topology and geometry update steps that consistently decrease distortion and seam length, producing a UV map with compact boundaries that strictly satises the distortion bound. OptCuts automatically produces high-quality, globally bijective UV maps without user intervention. While OptCuts can thus be a highly eective tool to create new mappings from scratch, we also show how it can be employed to improve pre-existing embeddings. Additionally, when semantic or other priors on seam placement are desired, OptCuts can be extended to respect these user preferences as constraints during optimization of the parameterization. We demonstrate the scalable performance of OptCuts on a wide range of challenging benchmark parameterization examples, as well as in comparisons with state-of-the-art UV methods and commercial tools.},
+author = {Li, Minchen and Kaufman, Danny M. and Kim, Vladimir G. and Solomon, Justin and Sheer, Alla},
+doi = {10.1145/3272127.3275042},
+file = {:home/libreliu/Downloads/3272127.3275042.pdf:pdf},
+isbn = {9781450360081},
+issn = {15577368},
+journal = {SIGGRAPH Asia 2018 Technical Papers, SIGGRAPH Asia 2018},
+keywords = {Geometry processing,Mesh parameterization,Numerical optimization,Seam placement},
+number = {6},
+title = {{OptCuts: Joint optimization of surface cuts and parameterization}},
+volume = {37},
+year = {2018}
+}
+
+
 @inproceedings{Erickson2002,
 abstract = {We consider the problem of cutting a set of edges on a poly-hedral manifold surface, possibly with boundary, to obtain a single topological disk, minimizing either the total number of cut edges or their total length. We show that this problem is NP-hard, even for manifolds without boundary and for punctured spheres. We also describe an algorithm with running time nO(g+k), where n is the combinatorial complexity, g is the genus, and k is the number of boundary components of the input surface. Finally, we describe a greedy algorithm that outputs a O(log2 g)-approximation of the minimum cut graph in O(g2n log n) time.},
 author = {Erickson, Jeff and Har-Peled, Sariel},
