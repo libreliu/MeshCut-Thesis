@@ -6,6 +6,16 @@
 
 \citet{oncomputinghantun} 基于几何直观，发现曲面网格的“把手”和“通道”等特征对于拓扑简化和特征检测都很有帮助，因此提出了柄圈和其形式化定义。在此基础上，\citet{Chai2018}认为柄圈是最短割缝问题的一个好的启发，并且实现了基于柄圈进行曲面切割的方法。
 
+直观上，柄圈和通道圈描述了曲面的一些几何特征，这些特征可以用来切割曲面。图 \ref{fig:hantuncadgadget} 展示了一个 CAD 工件上的一些柄圈和通道圈。
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{hantun-cad-gadget.png}
+    \caption{CAD 工件：红色圈为通道圈，绿色圈为柄圈}
+    \label{fig:hantuncadgadget}
+    \note{图片源自 \citet{oncomputinghantun}}
+\end{figure}
+
 本节首先介绍柄圈形式化描述所需要的基本知识，即单纯同调论和 $ \mathbb{Z}_2 $ 系数域下同调论描述的几个群的基表示，然后再给出计算 $ H_1(K; \mathbb{Z}_2) $ 的最优基的算法。之后，本节会介绍柄圈的形式化定义，以及一个基于前述算法的、计算柄圈的算法。
 
 \section{单纯同调论}
@@ -113,12 +123,12 @@ Z =
 \end{bmatrix}
 $$
 
-为了方便，我们引入优先基的概念。给定秩为 $ r $ 的矩阵 $ A $，由 $ A $ 的部分列向量组成的 $ B_{opt} = \{a_{i_1}, \dots, a_{i_r}\} $ 被称为优先基，如果 $ \{ i_1, \dots, i_r \} $ 是让 $ rank(B_{opt}) = rank(A) $ 的，在标号顺序上最小的一组指标集。记 $ EarliestBasis(A) $ 为 $ A $ 的优先基 $ B_{opt} $。
+为了方便，我们引入优先基的概念。给定秩为 $ r $ 的矩阵 $ A $，由 $ A $ 的部分列向量组成的 $ B_{opt} = \{a_{i_1}, \dots, a_{i_r}\} $ 被称为优先基，如果 $ \{ i_1, \dots, i_r \} $ 是让 $ {\rm rank}(B_{opt}) = {\rm rank}(A) $ 的，在标号顺序上最小的一组指标集。记 $ {\rm EarliestBasis}(A) $ 为 $ A $ 的优先基 $ B_{opt} $。
 
 那么，$ B_1(K) $ 的基可以用如下表示，记为 $ B $：
 $$
 B = 
-EarliestBasis(\begin{bmatrix}
+{\rm EarliestBasis}(\begin{bmatrix}
     \begin{array}{c|c|c}
     \partial_1(f_1) & \cdots & \partial_1(f_{|F|})
 \end{array}
@@ -132,16 +142,16 @@ $$
         B & H
     \end{array}
 \end{bmatrix} =
-EarliestBasis(\begin{bmatrix}
+{\rm EarliestBasis}(\begin{bmatrix}
     \begin{array}{ccc|c}
         \partial_1(f_1) & \cdots & \partial_1(f_{|F|}) & Z
     \end{array}
 \end{bmatrix})
 $$
 
-这是因为 $ \dim H_1 = \dim Z_1 - \dim B_1 $，而 $ \dim B_1 = rank(B) $，所以剩下的 $ rank(Z) - rank(B) $ 个列向量就是 $ H $ 的基了。
+这是因为 $ \dim H_1 = \dim Z_1 - \dim B_1 $，而 $ \dim B_1 = {\rm rank}(B) $，所以剩下的 $ {\rm rank}(Z) - {\rm rank}(B) $ 个列向量就是 $ H $ 的基了。
 
-$ H $ 的维数在闭曲面且为 $ nT^2 $ 类型时也被成为亏格，用 $ g $ 表示。此时，$ g $ 和欧拉特征数 $ \chi(K) = |V| - |E| + |F| $ 满足关系 $ \chi(K) = 2 - 2g $，此关系是 Euler-Poincare 公式的自然结论。
+$ H $ 的维数在闭曲面且为 $ nT^2 $ 类型时也被称为亏格，用 $ g $ 表示。此时，$ g $ 和欧拉特征数 $ \chi(K) = |V| - |E| + |F| $ 满足关系 $ \chi(K) = 2 - 2g $，此关系是 Euler-Poincare 公式的自然结论。
 
 有了 $ H $ 的基，我们就可以为每个圈都计算对应的坐标，即同调向量 (homology vector) 了。
 
@@ -163,13 +173,15 @@ $ H $ 的维数在闭曲面且为 $ nT^2 $ 类型时也被成为亏格，用 $ g
 问题一的解决依赖 \citet{Erickson2005} 中提出的最优基的紧性质。当一个圈 $ l $ 包含 $ l $ 上任意的两点之间的最短路径时，称 $ l $ 具有紧性质。
 
 \begin{proposition}
+    (\citet{Busaryev2012})~
     每个 $ H_1(K; \mathbb{Z}_2) $ 的最优基中的圈都具有紧性质。
 \end{proposition}
-\begin{proof}
-    首先，最优基中的每个圈都不能分解为一些更小的圈的并。假设可以分解为两个更小的圈，那一定有一个圈可以被被其它圈表示，则去掉该圈可以找到更优的基。
+这个问题的证明可以参考 \cite{Busaryev2012}。
+% \begin{proof}
+%     首先，最优基中的每个圈都不能分解为一些更小的圈的并。假设可以分解为两个更小的圈，那一定有一个圈可以被被其它圈表示，则去掉该圈可以找到更优的基。
 
-    若圈 $ l_1 $ 不具有紧性质，取 $ x $ 和 $ y $ 是使得 $ l_1 $ 不包含 $ x $ 到 $ y $ 的最短路，则 $ l_1 $ 被分为两条从 $ y $ 到 $ x $ 的路，分别记为 $ \alpha $ 和 $ \beta $。记 $ \sigma $ 为 $ x $ 到 $ y $ 的最短路，则 $ l'_1 = \alpha \sigma $ 和 $ l''_1 = \beta \sigma $ 中至少有一个不能被其它圈的线性组合所表示，否则其不会出现在基中。由于 $ l'_1 $ 和 $ l''_1 $ 均比 $ l_1 $ 短，设不能被线性表示的圈为 $ l'_1 $，则我们找到了一组更优的基 $ l'_1, l_2, \dots l_{n} $。
-\end{proof}
+%     若圈 $ l_1 $ 不具有紧性质，取 $ x $ 和 $ y $ 是使得 $ l_1 $ 不包含 $ x $ 到 $ y $ 的最短路，则 $ l_1 $ 被分为两条从 $ y $ 到 $ x $ 的路，分别记为 $ \alpha $ 和 $ \beta $。记 $ \sigma $ 为 $ x $ 到 $ y $ 的最短路，则 $ l'_1 = \alpha \sigma $ 和 $ l''_1 = \beta \sigma $ 中至少有一个不能被其它圈的线性组合所表示，否则其不会出现在基中。由于 $ l'_1 $ 和 $ l''_1 $ 均比 $ l_1 $ 短，设不能被线性表示的圈为 $ l'_1 $，则我们找到了一组更优的基 $ l'_1, l_2, \dots l_{n} $。
+% \end{proof}
 
 记 $ T_s $ 为从顶点 $ s $ 开始的权函数意义下的最短路径树，即包含从 $ s $ 到任意点的最短路径的树。同时，记候选圈集合为
 $$
@@ -177,8 +189,10 @@ $$
 $$
 我们有如下命题成立\cite{Busaryev2012}：
 \begin{proposition}
-    如果按权重升序排列 $ \Pi $ 中的圈，并且为每个圈计算同调向量，那么 $ EarliestBasis(\Pi) $ 是 $ H_1(K; \mathbb{Z}_2) $ 的最优基。
+    (\citet{Busaryev2012})~
+    如果按权重升序排列 $ \Pi $ 中的圈，并且为每个圈计算同调向量，那么 $ {\rm EarliestBasis}(\Pi) $ 是 $ H_1(K; \mathbb{Z}_2) $ 的最优基。
 \end{proposition}
+原文\cite{Busaryev2012}将实现细节与证明混合在一起了，这里给出一个简化的证明：
 \begin{proof}
     只要证明最优基中的圈一定在 $ \Pi $ 中。考虑每个圈 $ \gamma(T_s, e) $，其仅在 $ s $ 到任意一点 $ x \in \gamma(T_s, e) $ 时保留紧性质。事实上，每个紧的圈 $ l $都一定在某个 $ \gamma(T_s, e) $ 中，因为一定存在某个 $ s_i \in l $，且 $ \{\gamma(T_{s_i}, e_1), \dots, \gamma(T_{s_i}, e_{k})\} $ 生成了 1-闭链群，由于 $ l $ 的紧性质，$ l $ 一定为其中一个而不是其中某些的线性组合。因为最优基的圈一定是保留紧性质的圈，所以最优基的圈一定在 $ \Pi $ 中。
 \end{proof}
@@ -201,8 +215,8 @@ $$
 计算标注的方法如下所示：
 \begin{enumerate}
     \item \emph{计算 $ Z_1(K) $ 的基}\quad 固定某个 $ K^1 $ 的生成树 $ T $，记 $ k = |E| - |V| + 1 $，$ E \setminus E(T) $ 的各边为 $ e_{m_1}, \dots, e_{m_k} $，则可以构造基 $ \{ \gamma(T, e_{m_1}), \dots, \gamma(T, e_{m_{k}}) \} $。
-    \item \emph{计算 $ H_1(K) $ 的基}\quad 通过计算 $ EarliestBasis([B | Z]) $ 并移除前 $ rank(B) $ 列得到的剩余列向量，记为 $ H $，即为 $ H_1(K) $ 的基。同时，记 $ \tilde{Z} = [B | Z] $。
-    \item \emph{计算标注}\quad 对每个圈 $ z = \gamma(T, e) $，其坐标是满足 $ \tilde{Z} x = z $ 的 $ x $ 的最后 $ rank(Z) - rank(B) $ 个分量，这些作为该圈的标注。我们令 $ E(T) $ 上的边对应的标注为零向量，令 $ E \setminus E(T) $ 上的边对应的标注为对应的圈的标注，这样就得到了所有边的标注。
+    \item \emph{计算 $ H_1(K) $ 的基}\quad 通过计算 $ {\rm EarliestBasis}([B | Z]) $ 并移除前 $ {\rm rank}(B) $ 列得到的剩余列向量，记为 $ H $，即为 $ H_1(K) $ 的基。同时，记 $ \tilde{Z} = [B | Z] $。
+    \item \emph{计算标注}\quad 对每个圈 $ z = \gamma(T, e) $，其坐标是满足 $ \tilde{Z} x = z $ 的 $ x $ 的最后 $ {\rm rank}(Z) - {\rm rank}(B) $ 个分量，这些作为该圈的标注。我们令 $ E(T) $ 上的边对应的标注为零向量，令 $ E \setminus E(T) $ 上的边对应的标注为对应的圈的标注，这样就得到了所有边的标注。
 \end{enumerate}
 
 有了标注，我们只需要计算两个圈的标注是否相同，就可以判断两个圈是否同调了。这样，我们就解决了问题二。
@@ -223,17 +237,7 @@ $$
 
 \section{计算柄圈}
 
-\citet{oncomputinghantun} 引入了柄圈 (handle loop) 和通道圈 (tunnel loop) 的概念。
-
-直观上，柄圈和通道圈描述了曲面的一些几何特征，这些特征可以用来切割曲面。图 \ref{fig:hantuncadgadget} 展示了一个 CAD 工件上的一些柄圈和通道圈。
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\textwidth]{hantun-cad-gadget.png}
-    \caption{CAD 工件：红色圈为通道圈，绿色圈为柄圈}
-    \label{fig:hantuncadgadget}
-    \note{图片源自 \citet{oncomputinghantun}}
-\end{figure}
+\citet{oncomputinghantun} 在其文章中引入了柄圈 (handle loop) 和通道圈 (tunnel loop) 的概念。
 
 考虑一个可定向闭曲面 $ \mathcal{M} $，将其放在一个三维球 $ S^3 $ 中，其将 $ S^3 $ 分为两部分。给定曲面的定向，我们称 $ S^3 \setminus \mathcal{M} $ 的两个连通片分别为内部和外部，分别记作 $ I $ 和 $ O $。我们定义
 $$
@@ -253,6 +257,7 @@ $$
 我们观察到，如果我们沿着柄圈切割 $ \mathcal{M} $，并且将每个柄圈切割后剩下的“空洞”分别用两个圆盘补上，我们就可以“消灭”一个柄圈。这可以由以下命题以及闭曲面 $ nT^2 $ 的性质得到：
 
 \begin{proposition}
+    (\citet{oncomputinghantun})~
     对于亏格为 $ g $ 的可定向闭曲面 $ \mathcal{M} \subset S^3 $，存在 $ g $ 个柄圈 $ \{h_i\}_{i=1}^{g} $ 和 $ g $ 个通道圈 $ \{g_i\}_{i=1}^{g} $ ，分别构成 $ H_1(\mathbb{O}) $ 和 $ H_1(\mathbb{I}) $ 的基，且 $ \{h_i\}_{i=1}^{g} $ 和 $ \{t_i\}_{i=1}^{g} $ 构成 $ H_1(\mathcal{M}) $ 的一组基。
 \end{proposition}
 
