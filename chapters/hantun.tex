@@ -6,12 +6,12 @@
 
 \citet{oncomputinghantun} 基于几何直观，发现曲面网格的“把手”和“通道”等特征对于拓扑简化和特征检测都很有帮助，因此提出了柄圈和其形式化定义。在此基础上，\citet{Chai2018}认为柄圈是最短割缝问题的一个好的启发，并且实现了基于柄圈进行曲面切割的方法。
 
-直观上，柄圈和通道圈描述了曲面的一些几何特征，这些特征可以用来切割曲面。图 \ref{fig:hantuncadgadget} 展示了一个 CAD 工件上的一些柄圈和通道圈。
+直观上，柄圈和洞圈描述了曲面的一些几何特征，这些特征可以用来切割曲面。图 \ref{fig:hantuncadgadget} 展示了一个 CAD 工件上的一些柄圈和洞圈。
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{hantun-cad-gadget.png}
-    \caption{CAD 工件：红色圈为通道圈，绿色圈为柄圈}
+    \caption{CAD 工件：红色圈为洞圈，绿色圈为柄圈}
     \label{fig:hantuncadgadget}
     \note{图片源自 \citet{oncomputinghantun}}
 \end{figure}
@@ -48,7 +48,7 @@ $$
 $$
 成立。
 
-在考虑边缘同态的过程中，我们可以自然的得到 $ C_q(K) $ 的两个子群 $ Z_q(K) = ker(\partial_q(K)) $ 和 $ B_q(K) = Im(\partial_{q+1}(K)) $，分别称为 n-闭链群和 n-边缘链群。$ Z_q(K) $ 中的元素称为 n-闭链。显然，$ Z_q(K) $ 和 $ B_q(K) $ 都是自由阿贝尔群。同时可以证明，$ B_q(K) $ 是 $ Z_q(K) $ 的子群，这可以由下面的事实得到（$ c \in C_q(K) $）：
+在考虑边缘同态的过程中，我们可以自然的得到 $ C_q(K) $ 的两个子群 $ Z_q(K) = ker(\partial_q(K)) $ 和 $ B_q(K) = Im(\partial_{q+1}(K)) $，分别称为 q-闭链群和 q-边缘链群。$ Z_q(K) $ 中的元素称为 q-闭链。显然，$ Z_q(K) $ 和 $ B_q(K) $ 都是自由阿贝尔群。同时可以证明，$ B_q(K) $ 是 $ Z_q(K) $ 的子群，这可以由下面的事实得到（$ c \in C_q(K) $）：
 \begin{align*}
 \partial_{q-1} (\partial_q (c)) &= \partial_{q-1} (\sum_{i=0}^q (-1)^i a_0 a_1 \dots \hat{a_i} \dots a_q) \\
 &= \sum_{i=1}^q (-1)^i \partial_{q-1} (a_0 a_1 \dots \hat{a_i} \dots a_q) \\
@@ -237,20 +237,20 @@ $$
 
 \section{计算柄圈}
 
-\citet{oncomputinghantun} 在其文章中引入了柄圈 (handle loop) 和通道圈 (tunnel loop) 的概念。
+\citet{oncomputinghantun} 在其文章中引入了柄圈 (handle loop) 和洞圈 (tunnel loop) 的概念。
 
 考虑一个可定向闭曲面 $ \mathcal{M} $，将其放在一个三维球 $ S^3 $ 中，其将 $ S^3 $ 分为两部分。给定曲面的定向，我们称 $ S^3 \setminus \mathcal{M} $ 的两个连通片分别为内部和外部，分别记作 $ I $ 和 $ O $。我们定义
 $$
 \mathbb{I} = I \cup \mathcal{M}, \quad \mathbb{O} = O \cup \mathcal{M}
 $$
 
-那么，我们可以给出柄圈和通道圈的定义。
+那么，我们可以给出柄圈和洞圈的定义。
 
 \begin{definition}
     $ c \in Z_1(M) $
     \begin{enumerate}
         \item $ c $ 是柄圈，如果 $ c \in B_1(\mathbb{I}) $ 且 $ c \notin B_1(\mathbb{O}) $
-        \item $ c $ 是通道圈，如果 $ c \in B_1(\mathbb{O}) $ 且 $ c \notin B_1(\mathbb{I}) $
+        \item $ c $ 是洞圈，如果 $ c \in B_1(\mathbb{O}) $ 且 $ c \notin B_1(\mathbb{I}) $
     \end{enumerate}
 \end{definition}
 
@@ -258,23 +258,23 @@ $$
 
 \begin{proposition}
     (\citet{oncomputinghantun})~
-    对于亏格为 $ g $ 的可定向闭曲面 $ \mathcal{M} \subset S^3 $，存在 $ g $ 个柄圈 $ \{h_i\}_{i=1}^{g} $ 和 $ g $ 个通道圈 $ \{g_i\}_{i=1}^{g} $ ，分别构成 $ H_1(\mathbb{O}) $ 和 $ H_1(\mathbb{I}) $ 的基，且 $ \{h_i\}_{i=1}^{g} $ 和 $ \{t_i\}_{i=1}^{g} $ 构成 $ H_1(\mathcal{M}) $ 的一组基。
+    对于亏格为 $ g $ 的可定向闭曲面 $ \mathcal{M} \subset S^3 $，存在 $ g $ 个柄圈 $ \{h_i\}_{i=1}^{g} $ 和 $ g $ 个洞圈 $ \{g_i\}_{i=1}^{g} $ ，分别构成 $ H_1(\mathbb{O}) $ 和 $ H_1(\mathbb{I}) $ 的基，且 $ \{h_i\}_{i=1}^{g} $ 和 $ \{t_i\}_{i=1}^{g} $ 构成 $ H_1(\mathcal{M}) $ 的一组基。
 \end{proposition}
 
 这个命题的证明可以参考 \citet{oncomputinghantun}。
 
-考虑到第\ref{sec:shortest-h1m}节处计算最短同调圈的工作，我们是否可以通过求解 $ H_1(\mathcal{M}) $ 的一组基来计算 $ H_1(\mathbb{O}) $ 的基呢？答案是否定的，因为两个线性空间的直和的一组基并不一定能够直接拆分为两个线性空间各自的基。
+考虑本章前述计算最短同调圈的工作，因为两个线性空间的直和的一组基并不一定能够直接拆分为两个线性空间各自的基，所以我们并不可以通过直接求解求解 $ H_1(\mathcal{M}) $ 的一组基来计算 $ H_1(\mathbb{O}) $ 的基。
 
 不过，我们可以将其中的技术迁移到最短柄圈的计算上。我们只要：
 \begin{enumerate}
-    \item 对 $ H_1(\mathbb{O}) $ 进行三角剖分，得到单复形表示
-    \item 求 $ H_1(\mathbb{O}) $ 的一组基，并且筛选时只选择在 $ H_1(\mathcal{M}) $ 上的圈
+    \item 对 $ \mathbb{O} $ 进行三角剖分，得到 $ \mathbb{O} $ 的、有许多 3-单形（四面体）的单复形表示
+    \item 利用本章前述的技术，计算 $ H_1(\mathbb{O}) $ 的一组基，并且筛选时只选择在 $ H_1(\mathcal{M}) $ 上的圈
 \end{enumerate}
 就可以获得最短同调圈集 $ \{h_i\}_{i=1}^{g} $。
 
-应用 $ \{h_i\}_{i=1}^{g} $，我们可以得到\citet{ShuangmingChaiThesis}工作中的基于柄圈的网格切割算法：
+同时，应用\citet{ShuangmingChaiThesis}工作中的基于柄圈的网格切割算法，我们可以得到如下算法：
 \begin{enumerate}
-    \item 计算最短同调圈集 $ \{h_i\}_{i=1}^{g} $
+    \item 按前述技术计算最短同调圈集 $ \{h_i\}_{i=1}^{g} $
     \item 构造割线集 $ C $ 为所有 $ h_i $ 之并，同时再加入任意两个相邻的边，应用该割线集进行切割
 \end{enumerate}
 

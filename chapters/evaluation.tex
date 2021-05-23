@@ -1,10 +1,10 @@
 % !TeX root = ../main.tex
 
-\chapter{算法实现与比较}
+\chapter{算法实现}
 
 亏格测试数据采用 Blender 软件生成，通过 Cube 模型的布尔修改器得到，并导出为 obj 格式。实现代码均位于 \url{https://github.com/libreliu/GeoProcessing}。
 
-GIM 算法和计算最短同调圈的算法均采用 Python 语言编写，使用 OpenMesh 处理网格，并采用 PyVista 进行网格可视化。
+计算最短同调圈的算法采用 Python 语言编写，使用 OpenMesh 处理网格，并采用 PyVista 进行网格可视化。
 
 图 \ref{fig:genus2him} 展示了计算最短同调圈算法对亏格为 2 的立方体的输出。
 
@@ -30,8 +30,7 @@ GIM 算法和计算最短同调圈的算法均采用 Python 语言编写，使�
         \includegraphics[width=\textwidth]{Genus2_3_optim.png}
         % \caption{提取经纬线后}
     \end{subfigure}
-    \caption{亏格为 2 模型的最短同调圈}
-    \note{红色为同调基圈，共 4 个}
+    \caption{亏格为 2 模型的最短同调圈，红色为同调基圈，共 4 个}
     \label{fig:genus2him}
 \end{figure}
 
@@ -59,9 +58,26 @@ GIM 算法和计算最短同调圈的算法均采用 Python 语言编写，使�
         \includegraphics[width=\textwidth]{eight_3_optim.png}
         % \caption{提取经纬线后}
     \end{subfigure}
-    \caption{亏格为 2 模型的最短同调圈}
-    \note{红色为同调基圈，共 4 个}
+    \caption{亏格为 2 模型的最短同调圈，红色为同调基圈，共 4 个}
     \label{fig:eighthim}
 \end{figure}
 
 可以看到，最短同调圈计算的实现是正确的。
+
+\begin{figure}[h]
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Genus1_han_basis.png}
+        \caption{$ H_1(\mathbb{O}) $ 中的一个非零圈}
+        \label{fig:hanh1o}
+    \end{subfigure}
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{hanparaview.png}
+        \caption{TetGen 后 $ \mathcal{O} $ 中的一个剖面}
+        \label{fig:hanparaview}
+    \end{subfigure}
+    \caption{计算亏格为 1 模型的柄圈的部分步骤的结果}
+\end{figure}
+
+图 \ref{fig:hanh1o} 和图 \ref{fig:hanparaview} 展示了计算柄圈的部分步骤的计算结果。
