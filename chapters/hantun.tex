@@ -41,7 +41,6 @@ $ K $ 中所有 m-单形所对应的 m-定向单形所生成的在 $ \mathbb{Z} 
 
 定义边缘算子 $ \partial_q: T_q(K) \to C_{q-1}(K) $ 满足 
 $$ \partial_q (a_0 a_1 \dots a_q) = \sum_{i=0}^{q} (-1)^i a_0 \dots \hat{a_i} \dots a_q $$
-
 其中  $ \hat{a_i} $ 表示删除 $ a_i $，$ T_q(K) $ 为 $ K $ 的所有 q-定向单形的集合。可以看出，边缘算子描述了一个单形组合和其对应的“边界”的关系。同时可以证明，$ \partial q $ 在满足 $\partial_q(-s) = -\partial_q(s) $ 的情形下可以唯一的扩张为 $ C_q(K) \to C_{q-1}(K) $ 的同态。为了方便，此同态仍然记作 $ \partial_q $，则有
 $$
 \partial_q (\sum_i n_i s_i) = \sum_i n_i \partial_q (s_i)
@@ -63,7 +62,6 @@ $$
 $$
 H_q(K) \simeq \underbrace{Z \oplus Z \oplus \dots \oplus Z}_{b_q(K)} \oplus Z_{i_1} \oplus \dots \oplus Z_{i_m}
 $$
-
 其中 $ b_q(K) $ 被称为 $ K $ 的 $ q $ 维 Betti 数。
 
 我们在前面的推导过程中对链群使用的系数域为 $ \mathbb Z $。如果我们将 $ \mathbb{Z} $ 换为 $ \mathbb{Z}_2 $ 或 $ \mathbb{R} $，由于 $ \mathbb{Z}_2 $ 和 $ \mathbb{R} $ 均没有非平凡的扭子群，那么 $ H_q(K; Z_2) $ 或 $ H_q(K; R) $ 的结构就很容易得到：
@@ -112,8 +110,9 @@ $ C_1(K) $ 的（自然）基为 $ (e_1, \dots, e_{|E|}) $，其中 $ e_i $ 为 
 $$
 z = \sum_{e=uv \in z} e = \sum_{e=uv \in z} (T[s, u] + e + T[s, v]) = \sum_{e \in z} \gamma(T, e)
 $$
+其中第三个等号成立是因为所有在树上的边的 $ T[s, u] + e + T[s, v] = 0 $。
 
-其中第三个等号成立是因为所有在树上的边的 $ T[s, u] + e + T[s, v] = 0 $。由此，我们可以看出，$ \{ \gamma(T, e_{m_1}), \dots, \gamma(T, e_{m_{k}}) \} $ 构成 $ Z_1(K) $ 的一组基，矩阵表示如下：
+由此，我们可以看出，$ \{ \gamma(T, e_{m_1}), \dots, \gamma(T, e_{m_{k}}) \} $ 构成 $ Z_1(K) $ 的一组基，矩阵表示如下：
 $$
 Z = 
 \begin{bmatrix}
